@@ -7,7 +7,7 @@ fn decode_to_string(str: &str) -> String {
 }
 
 #[test]
-#[should_panic]
+#[should_panic(expected = "Invalid base64 character at index 4")]
 fn test_decode_invalid() {
     decode_to_string("QW5k*1"); 
 }

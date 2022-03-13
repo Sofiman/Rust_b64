@@ -65,16 +65,14 @@ const B64_INV_TABLE: [u8; 255] =
 
 pub fn decode_b64(in_buf: &[u8]) -> Vec<u8> {
     let len = in_buf.len();
-/*
-    let mut padding: usize = len-3;
-    while padding < len && in_buf[padding] == b'=' {
-        padding += 1
-    }
-    padding = len-padding;
 
-    let expected_len = (1 + (len - 1) / 4) * 3 - padding;
-*/
-    let mut out_vec = vec![0u8; (len / 4) * 3];
+    let mut padding: usize = len-1;
+    while padding > 1 && in_buf[padding] == b'=' {
+        padding -= 1;
+    }
+    padding = len-padding-1;
+
+    let mut out_vec = vec![0u8; (len / 4) * 3 - padding];
     let out_buf = out_vec.as_mut_slice();
 
     let mut pos: usize = 0;
