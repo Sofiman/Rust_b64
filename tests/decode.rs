@@ -41,3 +41,9 @@ fn test_decode_two_words_with_one_padding() {
     let decoded = decode_to_string("Q2F0RG9nMjE="); 
     assert_eq!("CatDog21".to_string(), decoded);
 }
+
+#[test]
+fn test_decode_long_word() {
+    let decoded = decode_to_string("TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdC4=");
+    assert_eq!("Lorem ipsum dolor sit amet, consectetur adipiscing elit.".to_string(), decoded);
+}
